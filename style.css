@@ -105,12 +105,6 @@ select {
   to { background-position: 0 100px; }
 }
 
-.clouds {
-  background: url("https://i.imgur.com/NM7wZ2H.png");
-  opacity: 0.2;
-  animation: cloudsMove 60s linear infinite;
-}
-
 @keyframes cloudsMove {
   from { background-position: 0 0; }
   to { background-position: 1000px 0; }

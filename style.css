@@ -11,14 +11,23 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  transition: background 1s ease;
 }
 
 body.day {
-  background: linear-gradient(135deg, #56ccf2, #2f80ed);
+  background: linear-gradient(135deg, #56ccf2, #2f80ed, #a0e9ff, #56ccf2);
 }
 
 body.night {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364, #0f2027);
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .weather-card {
@@ -59,6 +68,11 @@ select {
   background: linear-gradient(135deg, #ff9800, #ff5722);
   color: #fff;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.search-box button:hover {
+  transform: scale(1.05);
 }
 
 .weather-info {
@@ -82,27 +96,3 @@ select {
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
-
-.weather-animation {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.rain {
-  display: none;
-  background: repeating-linear-gradient(
-    transparent,
-    transparent 10px,
-    rgba(255,255,255,0.3) 11px
-  );
-  animation: rainMove 0.5s linear infinite;
-}
-
-@keyframes rainMove {
-  from { background-position: 0 0; }
-  to { background-position: 0 100px; }
-}
-
-

@@ -5,19 +5,13 @@
   <title>Pakistan Weather App</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
 </head>
 <body class="day">
 
-  <div class="weather-animation rain"></div>
-  <div class="weather-animation clouds"></div>
-
   <div class="weather-card" data-aos="zoom-in">
-
     <h1 data-aos="fade-down">Pakistan Weather</h1>
- 
 
-      <select id="pakCities" onchange="selectCity()" data-aos="fade-up">
+    <select id="pakCities" onchange="selectCity()" data-aos="fade-up">
       <option value="">Select Pakistan City</option>
       <option>Karachi</option>
       <option>Lahore</option>
@@ -32,7 +26,6 @@
     </select>
 
     <div class="search-box" data-aos="fade-up" data-aos-delay="200">
-
       <input type="text" id="cityInput" placeholder="Enter Pakistan city">
       <button type="button" onclick="getWeather()">Search</button>
     </div>
@@ -48,18 +41,16 @@
         <p id="wind"></p>
       </div>
     </div>
-
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="app.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1000,
-    once: true
-  });
-</script>
-
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 </html>

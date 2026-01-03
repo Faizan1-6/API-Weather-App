@@ -1,24 +1,27 @@
 const apiKey = "411c234a8293bbe7e886cee90e987b55";
 
 function selectCity() {
-  let city = document.getElementById("pakCities").value;
+  let city = document.getElementById("pakCities").value.trim();
   if (city) {
     document.getElementById("cityInput").value = city;
-    getWeather();
+
+    getWeather(true);
   }
 }
 
-function getWeather() {
+function getWeather(skipEmptyAlert = false) {
   let cityInput = document.getElementById("cityInput");
   let city = cityInput.value.trim();
 
   if (city === "") {
-    Swal.fire({
-      icon: "error",
-      title: "Empty Field",
-      text: "Please enter a city name",
-      confirmButtonColor: "#ff9800"
-    });
+    if (!skipEmptyAlert) {
+      Swal.fire({
+        icon: "error",
+        title: "Empty Field",
+        text: "Please enter a city name",
+        confirmButtonColor: "#ff9800"
+      });
+    }
     return;
   }
 
@@ -31,30 +34,15 @@ function getWeather() {
     })
     .then(data => {
       document.getElementById("weatherInfo").style.display = "block";
-
-      document.getElementById("city").innerText =
-        `${data.name}, Pakistan`;
-
-      document.getElementById("temp").innerText =
-        `${Math.round(data.main.temp)}°C`;
-
-      document.getElementById("description").innerText =
-        data.weather[0].description;
-
-      document.getElementById("humidity").innerText =
-        `💧 Humidity: ${data.main.humidity}%`;
-
-      document.getElementById("wind").innerText =
-        `💨 Wind: ${data.wind.speed} km/h`;
-
-      document.getElementById("icon").src =
-        `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      document.getElementById("city").innerText = `${data.name}, Pakistan`;
+      document.getElementById("temp").innerText = `${Math.round(data.main.temp)}°C`;
+      document.getElementById("description").innerText = data.weather[0].description;
+      document.getElementById("humidity").innerText = `💧 Humidity: ${data.main.humidity}%`;
+      document.getElementById("wind").innerText = `💨 Wind: ${data.wind.speed} km/h`;
+      document.getElementById("icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
       let isNight = data.weather[0].icon.includes("n");
       document.body.className = isNight ? "night" : "day";
-
-      let condition = data.weather[0].main.toLowerCase();
-      document.querySelector(".rain").style.display = condition.includes("rain") ? "block" : "none";
 
       cityInput.value = "";
     })
